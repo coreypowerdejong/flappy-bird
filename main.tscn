@@ -9,11 +9,12 @@
 radius = 47.8539
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gb"]
+size = Vector2(128, 128)
 
 [node name="main" type="Node2D"]
 
 [node name="bird" type="CharacterBody2D" parent="."]
-position = Vector2(355, 212)
+position = Vector2(200, 285)
 script = ExtResource("1_n5ngb")
 metadata/_edit_group_ = true
 
@@ -25,7 +26,7 @@ scale = Vector2(0.100255, 0.100255)
 texture = ExtResource("1_rt342")
 
 [node name="pipe" type="Node2D" parent="."]
-position = Vector2(831, 126)
+position = Vector2(116, 156)
 script = ExtResource("3_kgtnp")
 metadata/_edit_group_ = true
 
