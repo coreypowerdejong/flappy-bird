@@ -5,25 +5,13 @@
 [ext_resource type="Script" path="res://pipe.gd" id="3_kgtnp"]
 [ext_resource type="Texture2D" uid="uid://co5me0f41s647" path="res://icon.svg" id="3_mn8v4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o54qn"]
-radius = 47.8539
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gb"]
 size = Vector2(128, 128)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_o54qn"]
+radius = 47.8539
+
 [node name="main" type="Node2D"]
-
-[node name="bird" type="CharacterBody2D" parent="."]
-position = Vector2(200, 285)
-script = ExtResource("1_n5ngb")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bird"]
-shape = SubResource("CircleShape2D_o54qn")
-
-[node name="Sprite2D" type="Sprite2D" parent="bird"]
-scale = Vector2(0.100255, 0.100255)
-texture = ExtResource("1_rt342")
 
 [node name="pipe" type="Node2D" parent="."]
 position = Vector2(116, 156)
@@ -48,3 +36,15 @@ shape = SubResource("RectangleShape2D_ip1gb")
 
 [node name="Sprite2D" type="Sprite2D" parent="pipe/bottom_pipe"]
 texture = ExtResource("3_mn8v4")
+
+[node name="bird" type="CharacterBody2D" parent="."]
+position = Vector2(200, 285)
+script = ExtResource("1_n5ngb")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bird"]
+shape = SubResource("CircleShape2D_o54qn")
+
+[node name="Sprite2D" type="Sprite2D" parent="bird"]
+scale = Vector2(0.100255, 0.100255)
+texture = ExtResource("1_rt342")
