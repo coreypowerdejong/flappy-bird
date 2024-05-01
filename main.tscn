@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bi6bde8mdjeee"]
+[gd_scene load_steps=9 format=3 uid="uid://bi6bde8mdjeee"]
 
 [ext_resource type="Script" path="res://bird.gd" id="1_n5ngb"]
+[ext_resource type="Script" path="res://main.gd" id="1_rphra"]
 [ext_resource type="Texture2D" uid="uid://6u7m0q0bsxw" path="res://debug_circle.png" id="1_rt342"]
 [ext_resource type="Script" path="res://pipe.gd" id="3_kgtnp"]
 [ext_resource type="Texture2D" uid="uid://co5me0f41s647" path="res://icon.svg" id="3_mn8v4"]
@@ -13,6 +14,7 @@ size = Vector2(128, 128)
 radius = 47.8539
 
 [node name="main" type="Node2D"]
+script = ExtResource("1_rphra")
 
 [node name="pipe" type="Node2D" parent="."]
 position = Vector2(116, 156)
@@ -51,6 +53,7 @@ scale = Vector2(0.100255, 0.100255)
 texture = ExtResource("1_rt342")
 
 [node name="HUD" type="CanvasLayer" parent="."]
+process_mode = 3
 script = ExtResource("5_yewmo")
 
 [node name="ScoreLabel" type="Label" parent="HUD"]
@@ -79,7 +82,22 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Start"
 
+[node name="GameOverLabel" type="Label" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -83.0
+offset_right = 83.0
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Game over!
+Score:"
+horizontal_alignment = 1
+
 [connection signal="score_point" from="pipe" to="HUD" method="_on_pipe_score_point"]
 [connection signal="body_entered" from="pipe/top_pipe" to="HUD" method="_on_pipe_body_entered"]
 [connection signal="body_entered" from="pipe/bottom_pipe" to="HUD" method="_on_pipe_body_entered"]
+[connection signal="pause" from="HUD" to="." method="_on_hud_pause"]
+[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="pressed" from="HUD/StartButton" to="HUD" method="_on_start_button_pressed"]
