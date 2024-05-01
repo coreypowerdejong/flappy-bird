@@ -17,3 +17,5 @@ func _on_hud_pause():
 
 func _on_hud_start_game():
 	get_tree().paused = false
+	$bird.reset()
+	$pipe.reset()

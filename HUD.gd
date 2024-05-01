@@ -12,11 +12,6 @@ func _ready():
 	pause.emit()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _on_pipe_score_point():
 	score += 1
 	$ScoreLabel.text = str(score)
@@ -25,11 +20,13 @@ func _on_pipe_score_point():
 func _on_start_button_pressed():
 	$StartButton.hide()
 	$GameOverLabel.hide()
+	score = 0
+	$ScoreLabel.text = str(score)
 	$ScoreLabel.show()
 	start_game.emit()
 
 
-func _on_pipe_body_entered(body):
+func _on_pipe_body_entered(_body):
 	$StartButton.show()
 	$StartButton.text = "Play Again"
 	$GameOverLabel.text = "Game over!\nScore: " + str(score)

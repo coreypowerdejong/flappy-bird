@@ -4,11 +4,14 @@ var window_size
 var passed_pipe
 signal score_point
 
+func reset():
+		window_size = get_viewport().get_visible_rect().size
+		position.x = window_size.x + $top_pipe/CollisionShape2D.shape.size.x / 2
+		passed_pipe = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position.x = 400 + $top_pipe/CollisionShape2D.shape.size.x / 2
-	window_size = get_viewport().get_visible_rect().size
-	passed_pipe = false
+	reset()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
