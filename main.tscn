@@ -1,14 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://bi6bde8mdjeee"]
+[gd_scene load_steps=12 format=3 uid="uid://bi6bde8mdjeee"]
 
 [ext_resource type="Script" path="res://bird.gd" id="1_n5ngb"]
 [ext_resource type="Script" path="res://main.gd" id="1_rphra"]
 [ext_resource type="Script" path="res://pipe.gd" id="3_kgtnp"]
-[ext_resource type="Texture2D" uid="uid://co5me0f41s647" path="res://icon.svg" id="3_mn8v4"]
+[ext_resource type="Texture2D" uid="uid://dis4g3qg2hofu" path="res://art/pipe.png" id="4_m51m4"]
 [ext_resource type="Texture2D" uid="uid://bgi8lky0gjuc2" path="res://art/playerGrey_up1.png" id="5_simol"]
 [ext_resource type="Script" path="res://HUD.gd" id="5_yewmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gb"]
-size = Vector2(128, 128)
+size = Vector2(128.5, 43.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwkip"]
+size = Vector2(99, 331)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4p3tm"]
+size = Vector2(127, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8utf6"]
+size = Vector2(97, 330)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o54qn"]
 radius = 47.8539
@@ -17,28 +26,43 @@ radius = 47.8539
 script = ExtResource("1_rphra")
 
 [node name="pipe" type="Node2D" parent="."]
-position = Vector2(116, 156)
+position = Vector2(117, 163)
 script = ExtResource("3_kgtnp")
 metadata/_edit_group_ = true
 
 [node name="top_pipe" type="Area2D" parent="pipe"]
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="pipe/top_pipe"]
+[node name="Head" type="CollisionShape2D" parent="pipe/top_pipe"]
+position = Vector2(-0.25, -34.75)
 shape = SubResource("RectangleShape2D_ip1gb")
 
+[node name="Shaft" type="CollisionShape2D" parent="pipe/top_pipe"]
+position = Vector2(-0.5, -221.5)
+shape = SubResource("RectangleShape2D_pwkip")
+
 [node name="Sprite2D" type="Sprite2D" parent="pipe/top_pipe"]
-texture = ExtResource("3_mn8v4")
+position = Vector2(0, -200)
+rotation = -3.14159
+scale = Vector2(-2.922, 2.927)
+texture = ExtResource("4_m51m4")
 
 [node name="bottom_pipe" type="Area2D" parent="pipe"]
 position = Vector2(2.08165e-12, 400)
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="pipe/bottom_pipe"]
-shape = SubResource("RectangleShape2D_ip1gb")
+[node name="Head" type="CollisionShape2D" parent="pipe/bottom_pipe"]
+position = Vector2(0.5, -42.5)
+shape = SubResource("RectangleShape2D_4p3tm")
+
+[node name="Shaft" type="CollisionShape2D" parent="pipe/bottom_pipe"]
+position = Vector2(0.5, 144)
+shape = SubResource("RectangleShape2D_8utf6")
 
 [node name="Sprite2D" type="Sprite2D" parent="pipe/bottom_pipe"]
-texture = ExtResource("3_mn8v4")
+position = Vector2(0, 122)
+scale = Vector2(2.92188, 2.92188)
+texture = ExtResource("4_m51m4")
 
 [node name="bird" type="CharacterBody2D" parent="."]
 position = Vector2(200, 285)
