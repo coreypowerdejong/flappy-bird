@@ -80,4 +80,6 @@ size_flags_vertical = 4
 text = "Start"
 
 [connection signal="score_point" from="pipe" to="HUD" method="_on_pipe_score_point"]
+[connection signal="body_entered" from="pipe/top_pipe" to="HUD" method="_on_pipe_body_entered"]
+[connection signal="body_entered" from="pipe/bottom_pipe" to="HUD" method="_on_pipe_body_entered"]
 [connection signal="pressed" from="HUD/StartButton" to="HUD" method="_on_start_button_pressed"]

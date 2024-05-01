@@ -22,3 +22,7 @@ func _on_pipe_score_point():
 func _on_start_button_pressed():
 	$StartButton.hide()
 	start_game.emit()
+
+
+func _on_pipe_body_entered(body):
+	print("Hit!")
