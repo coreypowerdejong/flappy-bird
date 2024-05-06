@@ -1,10 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://bi6bde8mdjeee"]
+[gd_scene load_steps=17 format=3 uid="uid://bi6bde8mdjeee"]
 
 [ext_resource type="Script" path="res://bird.gd" id="1_n5ngb"]
 [ext_resource type="Script" path="res://main.gd" id="1_rphra"]
+[ext_resource type="Texture2D" uid="uid://drf7p51y3mv3f" path="res://art/background/mountainC.png" id="2_l1mxl"]
+[ext_resource type="Texture2D" uid="uid://beassm851g7ya" path="res://art/background/hills.png" id="2_pd6hx"]
+[ext_resource type="Texture2D" uid="uid://t3j1uju3h20u" path="res://art/background/groundLayer2.png" id="3_8fqnt"]
+[ext_resource type="Texture2D" uid="uid://dl3l4wva2c1sx" path="res://art/background/mountainA.png" id="3_eflnu"]
 [ext_resource type="Script" path="res://pipe.gd" id="3_kgtnp"]
 [ext_resource type="Texture2D" uid="uid://dis4g3qg2hofu" path="res://art/pipe.png" id="4_m51m4"]
 [ext_resource type="Texture2D" uid="uid://bgi8lky0gjuc2" path="res://art/playerGrey_up1.png" id="5_simol"]
+[ext_resource type="Texture2D" uid="uid://cwkvhvswos7f0" path="res://art/background/cloudLayer1.png" id="5_xyrbk"]
 [ext_resource type="Script" path="res://HUD.gd" id="5_yewmo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gb"]
@@ -24,6 +29,65 @@ radius = 47.8539
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_rphra")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ColorRect" parent="Background"]
+offset_right = 402.0
+offset_bottom = 628.0
+color = Color(0.129412, 0.72549, 1, 1)
+
+[node name="Mountains" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(600, 2.08165e-12)
+
+[node name="GroundLayer1" type="Sprite2D" parent="Background/Mountains"]
+modulate = Color(0.580392, 0.580392, 0.580392, 1)
+texture_repeat = 2
+position = Vector2(202, 447)
+scale = Vector2(0.581699, 0.581699)
+texture = ExtResource("2_l1mxl")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 2048, 400)
+
+[node name="GroundLayer2" type="Sprite2D" parent="Background/Mountains"]
+modulate = Color(0.443137, 0.443137, 0.443137, 1)
+texture_repeat = 2
+position = Vector2(168, 511)
+scale = Vector2(0.581699, 0.581699)
+texture = ExtResource("3_eflnu")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 2048, 400)
+
+[node name="BigHills" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(2, 2)
+motion_mirroring = Vector2(1024, 400)
+
+[node name="GroundLayer1" type="Sprite2D" parent="Background/BigHills"]
+modulate = Color(0.423529, 1, 0.333333, 1)
+texture_repeat = 2
+position = Vector2(188, 614)
+texture = ExtResource("2_pd6hx")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 2048, 400)
+
+[node name="Clouds" type="ParallaxLayer" parent="Background"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1024, 400)
+
+[node name="GroundLayer1" type="Sprite2D" parent="Background/Clouds"]
+texture_repeat = 2
+position = Vector2(508, -400)
+texture = ExtResource("5_xyrbk")
+flip_v = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 2048, 400)
+
+[node name="SmallHills" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(1024, 400)
+
+[node name="GroundLayer1" type="Sprite2D" parent="Background/SmallHills"]
+modulate = Color(0.0980392, 0.831373, 0, 1)
+texture_repeat = 2
+position = Vector2(181, 729)
+texture = ExtResource("3_8fqnt")
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 2048, 400)
 
 [node name="pipe" type="Node2D" parent="."]
 position = Vector2(117, 163)
@@ -93,6 +157,7 @@ offset_left = -20.0
 offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="HUD"]
@@ -119,6 +184,7 @@ offset_left = -83.0
 offset_right = 83.0
 offset_bottom = 109.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Game over!
 Score:"
