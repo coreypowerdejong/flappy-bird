@@ -15,6 +15,7 @@ func _ready():
 func _on_pipe_score_point():
 	score += 1
 	$ScoreLabel.text = str(score)
+	$ScoreSound.play()
 
 
 func _on_start_button_pressed():
@@ -27,6 +28,7 @@ func _on_start_button_pressed():
 
 
 func _on_pipe_body_entered(_body):
+	$LoseSound.play()
 	$StartButton.show()
 	$StartButton.text = "Play Again"
 	$GameOverLabel.text = "Game over!\nScore: " + str(score)

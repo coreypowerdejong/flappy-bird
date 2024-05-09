@@ -33,6 +33,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		$Sprite2D.texture = jump_texture
 		$FlapTimer.start()
+		$AudioStreamPlayer2D.play()
 	
 	# Set angle of flight
 	angle = atan2(velocity.y, 400)
