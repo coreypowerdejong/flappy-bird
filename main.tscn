@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bi6bde8mdjeee"]
+[gd_scene load_steps=18 format=3 uid="uid://bi6bde8mdjeee"]
 
 [ext_resource type="Script" path="res://bird.gd" id="1_n5ngb"]
 [ext_resource type="Script" path="res://main.gd" id="1_rphra"]
@@ -26,6 +26,8 @@ size = Vector2(97, 330)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o54qn"]
 radius = 47.8539
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m7gvd"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_rphra")
@@ -190,6 +192,13 @@ text = "Game over!
 Score:"
 horizontal_alignment = 1
 
+[node name="Floor" type="Area2D" parent="."]
+position = Vector2(28, 720)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_m7gvd")
+
 [connection signal="score_point" from="pipe" to="HUD" method="_on_pipe_score_point"]
 [connection signal="body_entered" from="pipe/top_pipe" to="HUD" method="_on_pipe_body_entered"]
 [connection signal="body_entered" from="pipe/bottom_pipe" to="HUD" method="_on_pipe_body_entered"]
@@ -197,3 +206,4 @@ horizontal_alignment = 1
 [connection signal="pause" from="HUD" to="." method="_on_hud_pause"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="pressed" from="HUD/StartButton" to="HUD" method="_on_start_button_pressed"]
+[connection signal="body_entered" from="Floor" to="HUD" method="_on_pipe_body_entered"]
