@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bi6bde8mdjeee"]
+[gd_scene load_steps=22 format=3 uid="uid://bi6bde8mdjeee"]
 
 [ext_resource type="Script" path="res://bird.gd" id="1_n5ngb"]
 [ext_resource type="Script" path="res://main.gd" id="1_rphra"]
@@ -31,6 +31,9 @@ size = Vector2(97, 330)
 radius = 47.8539
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m7gvd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8av3r"]
+normal = Vector2(0, 1)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_rphra")
@@ -135,6 +138,8 @@ texture = ExtResource("4_m51m4")
 
 [node name="bird" type="CharacterBody2D" parent="."]
 position = Vector2(200, 285)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_n5ngb")
 metadata/_edit_group_ = true
 
@@ -204,12 +209,23 @@ stream = ExtResource("13_tq6d0")
 [node name="LoseSound" type="AudioStreamPlayer2D" parent="HUD"]
 stream = ExtResource("14_ostkd")
 
-[node name="Floor" type="Area2D" parent="."]
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="Floor" type="Area2D" parent="Borders"]
 position = Vector2(28, 720)
+collision_layer = 2
+collision_mask = 2
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Floor"]
 shape = SubResource("WorldBoundaryShape2D_m7gvd")
+
+[node name="Ceiling" type="StaticBody2D" parent="Borders"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/Ceiling"]
+shape = SubResource("WorldBoundaryShape2D_8av3r")
 
 [connection signal="score_point" from="pipe" to="HUD" method="_on_pipe_score_point"]
 [connection signal="body_entered" from="pipe/top_pipe" to="HUD" method="_on_pipe_body_entered"]
@@ -218,4 +234,4 @@ shape = SubResource("WorldBoundaryShape2D_m7gvd")
 [connection signal="pause" from="HUD" to="." method="_on_hud_pause"]
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="pressed" from="HUD/StartButton" to="HUD" method="_on_start_button_pressed"]
-[connection signal="body_entered" from="Floor" to="HUD" method="_on_pipe_body_entered"]
+[connection signal="body_entered" from="Borders/Floor" to="HUD" method="_on_pipe_body_entered"]
